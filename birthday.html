@@ -8,13 +8,38 @@
     <style>
         body{padding:5px;font-family: Arial, Helvetica, sans-serif;}
     </style>
+    <script>
+        let year = prompt('Provide your birth year');
+        let month = prompt('Provide your birth month');
+        let day = prompt('Provide your birthday');
+        let seconds = prompt('Provide a number of seconds');
+
+        let birthDate = new Date(year, month-1, day);
+        let age;
+        let newDate;
+        
+        try{
+            if(isNaN(year + month + day + seconds)){
+                throw new Error('Inputs are invalid');
+            }
+            birthDate = new Date(year, month-1, day);
+            let days = seconds/86400;
+            let nextDate = birthDate.getDate() + days;
+            newDate = new Date(birthDate.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+            newDate.setDate(nextDate);
+            age = newDate.getFullYear() - birthDate.getFullYear();
+
+        } catch(error){
+            alert(error.message)
+        }
+    </script>
     
 </head>
 <body>
     <h1>Age Calculator</h1>
-    <p>Provided Birthdate: </p>
-    <p>Number of seconds provided: </p>
-    <p>Future Date: </p>
-    <p>Age in the Year </p>
+    <p>Provided Birthdate: <script>document.write(birthDate)</script> </p>
+    <p>Number of seconds provided: <script>document.write(seconds)</script> </p>
+    <p>Future Date: <script>document.write(newDate)</script> </p></p>
+    <p>Age in the Year <script>document.write(age)</script> </p>
 </body>
 </html>
